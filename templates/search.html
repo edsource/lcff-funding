@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"><title>Search California Smarter Balanced Test Results | EdSource</title></meta>
+        {% include 'header.html' %}
+    </head>
+    <body>
+        <div id="rs-contain">
+            {% include 'nav.html' %}
+            <div id="rs-body">
+                <section class="overview">
+                     <div><h2>Search School Districts</h2></div>   
+                     <div id="rs-share"></div>
+                     <div>
+                        <p>Search for one of the more than 1,000 school districts and county offices of education that administered the Smarter Balanced tests in spring 2015. Click on the name of the school district and county offices of education to get more details from the test results. <strong> Sort through the data below by clicking on the table header.</strong></p>
+                        <p>Some school districts and county offices of education may not be in the database. Districts where 10 or fewer students had valid test scores for either English Lanugage Arts or Math may be omitted from this list. Let us know if you find one that is missing, or if you have any <a href="mailto:edsource@edsource.org">questions about the database</a>.</p>
+                    </div>         
+                </section>
+
+                <hr>
+                <div id="pretty-table-top"><a href="#top"><i class="fa fa-arrow-up"></i></a></div>
+                <section id="pretty-table-search-options">
+                    <input id="pretty-table-search" type="text" style="height:24px;" placeholder="Search School Districts">
+                    <div><p class="pretty-table-button" id="execute-search">Search</p></div>
+                    <div><p class="pretty-table-button" id="reset-search">Reset</p></div>
+                </section>
+                <section>
+                     <table id="sb-table" cellpadding=7>
+                        <thead>
+                            <th>School District</th>
+                            <th>English: Standard Met or Exceeded</th>
+                            <th>English: Standard Nearly or Not Met</th>
+                            <th>Math: Standard Met or Exceeded</th>
+                            <th>Math: Standard Nearly or Not Met</th>
+                        </thead>
+                        {% for d in data %}
+                        {% if d.check_all %}
+                        <tr>
+                            <td><a href="{{d.entity_slug}}.html">{{d.entity_name}}</a></td>
+                             {% if d.check_all_eng %}
+                            <td>{{(d.pct_standard_met_or_exceeded_eng|float*100)}}%</td>
+                            <td>{{(100 - (d.pct_standard_met_or_exceeded_eng|float*100))}}%</td>
+                            {% else %}
+                            <td></td>
+                            <td></td>
+                            {% endif %}
+                            {% if d.check_all_math %}
+                            <td>{{(d.pct_standard_met_or_exceeded_math|float*100)}}%</td>
+                            <td>{{(100 - (d.pct_standard_met_or_exceeded_math|float*100))}}%</td>
+                            {% else %}
+                            <td></td>
+                            <td></td>                       
+                            {% endif %}                        
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </table>
+                </section>
+            </div>  
+             {% include 'footer.html' %}
+            <script type="text/javascript">
+
+                /* CONFIGURE TABLESORTER
+                ======================================*/    
+                window.onload = function(){
+                   jQuery('#sb-table').tablesorter({sortList: [[1,1]]});
+                }
+                
+                /* SEARCH FUNCTIONS
+                ======================================*/    
+                var jQueryrows = jQuery("#sb-table tr");
+                var allRows = document.getElementsByTagName('tr');
+                function searchTool(){
+                    var val = jQuery.trim(jQuery('#pretty-table-search').val()).replace(/ +/g, ' ').toLowerCase();
+                    if (val === ''){
+                        var showMe = document.querySelectorAll('[show-me=yes]');
+                    }
+                    else if (val !== '') {
+                         for (var i=1 ; i < allRows.length ; i++){
+                            allRows[i].style.display = "table-row";
+
+                            var testText = allRows[i].textContent;
+                            testText = testText.replace(/\s+/g, ' ').toLowerCase();
+                            if (testText.indexOf(val) == -1){
+                                allRows[i].style.display = "none";
+                            }
+                         }
+                    }
+                }       
+
+                jQuery('#execute-search').on('click', function(){searchTool();});
+                jQuery('#pretty-table-search').on('keypress', function(e){
+                    var key = e.which;
+                    if (key == 13){searchTool();}
+                })
+
+                jQuery('#reset-search').on('click', function(){
+                    jQuery('tr').css('display','table-row');
+                    jQuery('#pretty-table-search').val('');
+                })
+
+            </script>      
+        </div>
+        <script type="text/javascript">
+
+            jQuery(document).ready(function(){
+
+                 /* PRE-FILTER
+                ==============================================*/
+                var grabURL = window.location.href;
+                grabURL = grabURL.split('#');
+
+                if (grabURL[1]){
+                    jQuery('#pretty-table-search').val(grabURL[1]);
+                    jQuery('#execute-search').click();
+                }
+                
+                 /* FIX FLOAT ISSUE (SHORT TERM)
+                ==============================================*/
+                var cells = jQuery('td');
+                
+                for (var i = 0 ; i < cells.length ; i++){
+                    cells[i].innerHTML = cells[i].innerHTML.replace('.0', '');                    
+                }
+
+                /* ADD SHARE BUTTONS
+                ==============================================*/
+                var shareTwitterURL = 'http%3A%2F%2Fedsource.org%2Fsmarter-balanced-results/search_school_districts.html';
+
+                // build twitter button
+                var twitterButton = '<a class="twitter-share" href="https://twitter.com/share?url='+shareTwitterURL+'&via=edsource&hashtags=CommonCore"><i class="fa fa-twitter-square"></i></a>';
+
+                // append buttons
+                jQuery('#rs-share').append(twitterButton);
+
+            })
+        </script>
+    </body>    
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3051201-4', 'edsource.org');
+    ga('send', 'pageview');
+
+    </script>
+</html>

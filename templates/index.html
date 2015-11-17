@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"><title>California Smarter Balanced Test Results | EdSource</title></meta>
+        {% include 'header.html' %}
+    </head>
+    <body>
+        <div id="rs-contain">
+            {% include 'nav.html' %}
+            <div id="rs-body">
+                <section class="overview home">
+                    <div>
+                        <h1>California Smarter Balanced Assessments Results: Spring 2015</h1>
+                    </div>
+                    <p style="font-size:1em;text-align:center;">By Theresa Harrington and Sarah Tully. Database by John C. Osborn and Matt Levin</p>
+                    <div id="rs-share"></div>
+                    <div>
+                        <p>As part of the implementation of the <a href="http://www.corestandards.org">Common Core State Standards </a>that emphasize critical thinking, problem-solving and analytical thinking, California along with many other states joined the <a href="http://www.smarterbalanced.org">Smarter Balanced Assessment Consortium</a>. The consortium created a series of tests to measure how well students are mastering the new standards. </p>
+                        <p>In the spring of 2015, more than 3 million students in grades 5-8 and 11, for the first time, took a full set of assessments, or tests, in English language arts/literacy and math aligned with the Common Core.</p>
+                        <p>The state publicly released the first results from the Smarter Balanced assessments on September 9, 2015.  They form part of what the state calls the California Assessment of Student Performance and Progress, or <a href="http://www.caaspp.org">CAASPP</a>. </p>
+                        <p>Student scores are categorized by four <a href="http://www.smarterbalanced.org/achievement-levels/">“achievement levels”</a> that indicate whether a student has exceeded the standard, met the standard, nearly met the standard, or did not meet the standard at different grade levels.  According to state education officials, the 2015 scores set a baseline to measure how well students progress in the future. Officials warn against comparing the results from previous assessments administered under the state’s very different <a href="http://www.cde.ca.gov/ta/tg/sr/">Standardized Testing and Reporting (STAR) program.</a></p>
+                        <p>To view test results from individual districts, click the "Search Districts" option at the top of this page.</p>
+                    </div>       
+                </section>
+                <!--<section class="overview home">
+                    <div>
+                        <h3>Top 10 Scoring School Districts</h3>
+                    </div>
+                    <div id="stacked-chart-a" class="stacked-per-column" style="width:700px;"></div>
+                    <table cellpadding=7>
+                        <thead>
+                            <th>School District</th>
+                            <th>English: Standard Met or Exceeded</th>
+                            <th>English: Standard Nearly Met</th>
+                            <th>English: Standard Not Met</th>
+                            
+                        </thead>
+                        {% for d in top10eng %}
+                        <tr>
+                            <td><a href="{{d.entity_slug}}.html">{{d.entity_name}}</a></td>
+                            <td>{{((d.pct_standard_met_or_exceeded_eng|float * 100))}}%</td>
+                            <td>{{((d.pct_standard_nearly_met_eng|float * 100))}}%</td>
+                            <td>{{((d.pct_standard_not_met_eng|float * 100))}}%</td>
+                        </tr>
+                       {% endfor %}
+                    </table>
+                     <script type="text/javascript">
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/top10eng.csv', 'stacked-chart-a', 700,300, [50,100,30,40], colorbrewer['BuPu'], 3, false, null, null, '.0%', 10, .1, null, 'English Language Arts Results', 'School districts where less than 500 students tested are omitted.', {{ top10engD|safe }}, 100, true);
+                    </script>
+                </section>-->
+                <section class="overview">
+                     <div><h2>{{home.entity_name}}</h2></div> 
+                    <p style="text-align:center;">Data may not round up to 100% due to rounding.</p>
+                </section>
+                <!-- OVERALL PRO  -->
+                <section class="stacked over-pro-grade">
+                    <div>
+                        <h3>Overall Test Results</h3>
+                    </div>
+                    <div id="stacked-chart-1" class="stacked-per-column"></div>
+                     <table cellpadding=7>
+                        <thead>
+                            <th>Subject</th>
+                            <th>Standard Not Met</th>
+                            <th>Standard Nearly</th>
+                            <th>Standard Met</th>
+                            <th>Standard Exceeded</th>
+                        </thead>
+                        <tr>
+                            <td>English</td>
+                            <td>{{((home.pct_standard_not_met_eng|float * 100))}}%</td>
+                            <td>{{((home.pct_standard_nearly_met_eng|float * 100))}}%</td>
+                            <td>{{((home.pct_standard_met_eng|float * 100))}}%</td>                           
+                            <td>{{((home.pct_standard_exceeded_eng|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Math</td>
+                            <td>{{((home.pct_standard_not_met_math|float * 100))}}%</td>                             
+                            <td>{{((home.pct_standard_nearly_met_math|float * 100))}}%</td>
+                            <td>{{((home.pct_standard_met_math|float * 100))}}%</td>     
+                            <td>{{((home.pct_standard_exceeded_math|float * 100))}}%</td>  
+                        </tr>
+                    </table>
+                    <script type="text/javascript">
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-1', 500, 300, [50,100,30,40], colorbrewer['BuPu'], 4, true, null, null, '.0%', 10, .1, null, null, null, {{ data|safe }}, 0, true);
+                    </script>
+                    
+                </section>
+                <hr>
+                <!-- OVERALL PRO GRADES  -->
+                <section class="stacked over-pro-grades">
+                    <div>
+                        <h3>Grade Level Breakdown</h3>
+                    </div>
+                    <div id="stacked-chart-2" class="stacked-per-column"></div>
+                     <table class="table-fix" cellpadding=7>
+                        <thead>
+                            <th>Grade</th>
+                            <th>English: Standard Not Met</th>
+                            <th>English: Standard Nearly Met</th>
+                            <th>English: Standard Met</th>
+                            <th>English: Standard Exceeded</th>
+                        </thead>
+                         <tr>
+                            <td>Grade 3</td>
+                            <td>{{((home.grade3_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade3_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade3_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade3_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 4</td>
+                            <td>{{((home.grade4_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade4_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade4_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade4_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 5</td>
+                            <td>{{((home.grade5_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade5_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade5_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade5_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 6</td>
+                            <td>{{((home.grade6_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade6_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade6_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade6_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 7</td>
+                            <td>{{((home.grade7_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade7_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade7_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade7_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 8</td>
+                            <td>{{((home.grade8_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade8_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade8_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade8_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 11</td>
+                            <td>{{((home.grade11_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade11_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade11_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade11_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                    </table>
+                    <div id="stacked-chart-3" class="stacked-per-column"></div>
+                    <table class="table-fix" cellpadding=7>
+                        <thead>
+                            <th>Grade</th>
+                            <th>Math: Standard Not Met</th>
+                            <th>Math: Standard Nearly Met</th>
+                            <th>Math: Standard Met</th>
+                            <th>Math: Standard Exceeded</th>
+                        </thead>
+                         <tr>
+                            <td>Grade 3</td>
+                            <td>{{((home.grade3_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade3_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade3_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade3_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 4</td>
+                            <td>{{((home.grade4_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade4_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade4_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade4_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 5</td>
+                            <td>{{((home.grade5_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade5_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade5_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade5_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 6</td>
+                            <td>{{((home.grade6_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade6_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade6_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade6_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 7</td>
+                            <td>{{((home.grade7_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade7_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade7_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade7_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 8</td>
+                            <td>{{((home.grade8_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade8_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade8_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade8_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 11</td>
+                            <td>{{((home.grade11_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.grade11_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.grade11_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.grade11_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                    </table>
+                    <script type="text/javascript">
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-2', 500, 300, [50,100,30,40], colorbrewer['BuPu'], 4, false, null, null, '.0%', 10, .1, null, 'English Language Arts Results', null, {{ data|safe }}, 1, true);
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-3', 500, 300, [50,100,30,40], colorbrewer['BuPu'], 4, false, null, null, '.0%', 10, .1, null, 'Math Results', null, {{ data|safe }}, 2, false);
+                    </script>
+                </section>
+                <hr> 
+                <section class="stacked over-pro-race">
+                     <div>
+                        <h3>Overall Test Results by Gender</h3>                 
+                    </div>
+                    <div id="stacked-chart-6" class="stacked-per-column"></div>
+                    <table cellpadding=7>
+                        <thead>
+                            <th>Gender</th>
+                            <th>English: Standard Not Met</th>
+                            <th>English: Standard Nearly Met</th>
+                            <th>English: Standard Met</th>
+                            <th>English: Standard Exceeded</th>
+                        </thead>
+                        <tr>
+                            <td>Male</td>
+                            <td>{{((home.male_eng_lvl_1|float * 100))}}%</td>
+                            <td>{{((home.male_eng_lvl_2|float * 100))}}%</td>
+                            <td>{{((home.male_eng_lvl_3|float * 100))}}%</td>
+                            <td>{{((home.male_eng_lvl_4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Female</td>
+                            <td>{{((home.female_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.female_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.female_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.female_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                    </table>
+                    <div id="stacked-chart-7" class="stacked-per-column"></div>
+                    <table cellpadding=7>
+                        <thead>
+                            <th>Gender</th>
+                            <th>Math: Standard Not Met</th>
+                            <th>Math: Standard Nearly Met</th>
+                            <th>Math: Standard Met</th>
+                            <th>Math: Standard Exceeded</th>
+                        </thead>
+                        <tr>
+                            <td>Male</td>
+                            <td>{{((home.male_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.male_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.male_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.male_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Female</td>
+                            <td>{{((home.female_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.female_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.female_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.female_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                    </table>
+                     <script type="text/javascript">
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-6', 500,300, [50,100,30,40], colorbrewer['BuPu'], 4, true, null, null, '.0%', 10, .1, null, 'English Language Arts Results', null, {{ data|safe }}, 5, true);
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-7', 500,300, [50,100,30,40], colorbrewer['BuPu'], 4, true, null, null, '.0%', 10, .1, null, 'Math Results', null, {{ data|safe }}, 6, false);
+                    </script>
+                </section>
+                <hr>
+                <section class="stacked over-pro-race">
+                     <div>
+                        <h3>Overall Test Results by Race and Ethnicity</h3>                 
+                    </div>
+                    <div id="stacked-chart-4" class="stacked-per-column"></div>
+                    <table cellpadding=7>
+                        <thead>
+                            <th>Race/Ethnicity</th>
+                            <th>English: Standard Not Met</th>
+                            <th>English: Standard Nearly Met</th>
+                            <th>English: Standard Met</th>
+                            <th>English: Standard Exceeded</th>
+                        </thead>
+                        <tr>
+                            <td>White</td>
+                            <td>{{((home.white_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.white_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.white_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.white_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Hispanic</td>
+                            <td>{{((home.hisp_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.hisp_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.hisp_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.hisp_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>African-American</td>
+                            <td>{{((home.black_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.black_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.black_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.black_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>Asian</td>
+                            <td>{{((home.asian_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.asian_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.asian_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.asian_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Pacific Islander</td>
+                            <td>{{((home.pi_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.pi_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.pi_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.pi_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>Filipino</td>
+                            <td>{{((home.filipino_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.filipino_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.filipino_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.filipino_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>American Indian and Alaskan Native</td>
+                            <td>{{((home.aian_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.aian_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.aian_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.aian_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                        
+                        
+                    </table>
+                    <div id="stacked-chart-5" class="stacked-per-column"></div>
+                    <table cellpadding=7>
+                        <thead>
+                            <th>Race/Ethnicity</th>
+                            <th>Math: Standard Not Met</th>
+                            <th>Math: Standard Nearly Met</th>
+                            <th>Math: Standard Met</th>
+                            <th>Math: Standard Exceeded</th>
+                        </thead>
+                        <tr>
+                            <td>White</td>
+                            <td>{{((home.white_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.white_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.white_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.white_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Hispanic</td>
+                            <td>{{((home.hisp_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.hisp_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.hisp_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.hisp_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>African-American</td>
+                            <td>{{((home.black_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.black_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.black_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.black_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>Asian</td>
+                            <td>{{((home.asian_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.asian_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.asian_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.asian_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>Pacific Islander</td>
+                            <td>{{((home.pi_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.pi_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.pi_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.pi_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>Filipino</td>
+                            <td>{{((home.filipino_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.filipino_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.filipino_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.filipino_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                         <tr>
+                            <td>American Indian and Alaskan Native</td>
+                            <td>{{((home.aian_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.aian_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.aian_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.aian_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                    </table>
+                     <script type="text/javascript">
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-4', 510,300, [50,100,30,40], colorbrewer['BuPu'], 4, true, null, null, '.0%', 10, .1, null, 'English Language Arts Results', null, {{ data|safe }}, 3, true);
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-5', 510,300, [50,100,30,40], colorbrewer['BuPu'], 4, true, null, null, '.0%', 10, .1, null, 'Math Results', null, {{ data|safe }}, 4, false);
+                    </script>
+                </section>
+                <hr> 
+                <section class="stacked over-pro-race">
+                     <div>
+                        <h3>Overall Test Results by High-Needs Status</h3>                 
+                    </div>
+                    <div id="stacked-chart-8" class="stacked-per-column"></div>
+                    <table cellpadding=7>
+                        <thead>
+                            <th>Status</th>
+                            <th>English: Standard Not Met</th>
+                            <th>English: Standard Nearly Met</th>
+                            <th>English: Standard Met</th>
+                            <th>English: Standard Exceeded</th>
+                        </thead>
+                        <tr>
+                            <td>Economically Disadvantaged</td>
+                            <td>{{((home.ed_eng_lvl_1|float * 100))}}%</td>
+                            <td>{{((home.ed_eng_lvl_2|float * 100))}}%</td>
+                            <td>{{((home.ed_eng_lvl_3|float * 100))}}%</td>
+                            <td>{{((home.ed_eng_lvl_4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>English Learner</td>
+                            <td>{{((home.el_eng_lvl1|float * 100))}}%</td>
+                            <td>{{((home.el_eng_lvl2|float * 100))}}%</td>
+                            <td>{{((home.el_eng_lvl3|float * 100))}}%</td>
+                            <td>{{((home.el_eng_lvl4|float * 100))}}%</td>
+                        </tr>
+                    </table>
+                    <div id="stacked-chart-9" class="stacked-per-column"></div>
+                    <table cellpadding=7>
+                        <thead>
+                            <th>Status</th>
+                            <th>Math: Standard Not Met</th>
+                            <th>Math: Standard Nearly Met</th>
+                            <th>Math: Standard Met</th>
+                            <th>Math: Standard Exceeded</th>
+                        </thead>
+                        <tr>
+                            <td>Economically Disadvantaged</td>
+                            <td>{{((home.ed_math_lvl_1|float * 100))}}%</td>
+                            <td>{{((home.ed_math_lvl_2|float * 100))}}%</td>
+                            <td>{{((home.ed_math_lvl_3|float * 100))}}%</td>
+                            <td>{{((home.ed_math_lvl_4|float * 100))}}%</td>
+                        </tr>
+                        <tr>
+                            <td>English Learner</td>
+                            <td>{{((home.el_math_lvl1|float * 100))}}%</td>
+                            <td>{{((home.el_math_lvl2|float * 100))}}%</td>
+                            <td>{{((home.el_math_lvl3|float * 100))}}%</td>
+                            <td>{{((home.el_math_lvl4|float * 100))}}%</td>
+                        </tr>
+                    </table>
+                     <script type="text/javascript">
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-8', 500,300, [50,100,30,40], colorbrewer['BuPu'], 4, true, null, null, '.0%', 10, .1, null, 'English Language Arts Results', null, {{ data|safe }}, 7, true);
+                        stackedColumnChart.getAttr(stackedColumnChart.vars, '../static/data.csv', 'stacked-chart-9', 500,300, [50,100,30,40], colorbrewer['BuPu'], 4, true, null, null, '.0%', 10, .1, null, 'Math Results', null, {{ data|safe }}, 8, false);
+                    </script>
+                </section>
+               {% include 'footer.html' %}
+            </div>         
+        </div>
+    </body>    
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+             /* FIX FLOAT ISSUE (SHORT TERM)
+            ==============================================*/
+            var cells = jQuery('td');
+            
+            for (var i = 0 ; i < cells.length ; i++){
+                cells[i].innerHTML = cells[i].innerHTML.replace('.0', '');                    
+            }
+
+            /* ADD SHARE BUTTONS
+            ==============================================*/
+            var shareTwitterURL = 'http%3A%2F%2Fedsource.org%2Fsmarter-balanced-results/index.html';
+
+            // build twitter button
+            var twitterButton = '<a class="twitter-share" href="https://twitter.com/share?url='+shareTwitterURL+'&via=edsource&hashtags=CommonCore"><i class="fa fa-twitter-square"></i></a>';
+
+            // append buttons
+            jQuery('#rs-share').append(twitterButton);
+
+             /* CONFIGURE TABLESORTER
+            ======================================*/    
+            window.onload = function(){
+               jQuery('table').tablesorter({sortList: [[1,1]]});
+            }
+
+        })
+    </script>
+</html>
