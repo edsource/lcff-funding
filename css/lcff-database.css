@@ -1,3 +1,30 @@
 /* HEADER STYLE 
 ===========================================*/
-#slick-header>div:nth-of-type(2) a {color: #b3cde3;}
+#slick-header>div:nth-of-type(2) h2 {font-size: 75%;}
+#slick-header>div:nth-of-type(2) a, #slick-header .slick-nav-hed a, #slick-header .slick-social-hed a:hover {color: #b3cde3;}
+#slick-header>div:nth-of-type(2) a:hover, #slick-header .slick-nav-hed a:hover {color:#edf8fb;}
+
+#slick-header .slick-nav-hed {margin-top:-3px;}
+#slick-header .slick-nav-hed a {margin:0 20px;}
+#slick-header .slick-social-hed {top:-3px;}
+
+/* TABLE STYLE 
+===========================================*/
+.pretty-table {overflow:hidden;}
+#pretty-table-search-options {margin: 20px 0;}
+
+/* TABLE STYLE 
+===========================================*/
+#pretty-table-search-options {margin:20px 0 !important;}
+
+/* MOBILE STYLE 
+===========================================*/
+@media screen and (min-width:768px){
+	#slick-header>div:nth-of-type(2) h2 {font-size: 100%;}
+	#slick-header .slick-social-hed {display:block;}
+
+}
+
+@media screen and (min-width:1028px){
+	.pretty-table {width: 70%;margin: 0 auto;}
+}
