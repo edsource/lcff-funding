@@ -8,14 +8,16 @@
 #slick-header .slick-nav-hed a {margin:0 20px;}
 #slick-header .slick-social-hed {top:-3px;}
 
-/* TABLE STYLE 
+/* BODY STYLE 
 ===========================================*/
-.pretty-table {overflow:hidden;}
-#pretty-table-search-options {margin: 20px 0;}
+#slick-body>div[role="intro"] {margin-bottom:4em;}
+
 
 /* TABLE STYLE 
 ===========================================*/
-#pretty-table-search-options {margin:20px 0 !important;}
+.pretty-table {overflow:hidden;}
+	#slick-contain .pretty-table a {color:#4483b8;}
+#pretty-table-search-options {margin: 20px 0;}
 
 /* MOBILE STYLE 
 ===========================================*/
@@ -26,5 +28,5 @@
 }
 
 @media screen and (min-width:1028px){
-	.pretty-table {width: 70%;margin: 0 auto;}
+	.seventy {width: 70%;margin: 0 auto;}
 }

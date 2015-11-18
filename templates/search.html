@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"><title>Search California Smarter Balanced Test Results | EdSource</title></meta>
+        <meta charset="utf-8"><title>Search School Districts and Charters | EdSource</title></meta>
         <link rel="stylesheet" type="text/css" href="http://edsource.org/wp-content/css/charts/table.css">
         {% include 'header.html' %}
     </head>
@@ -9,7 +9,11 @@
         <div id="slick-contain">
             {% include 'nav.html' %}
             <section id="slick-body">
-                <div class="pretty-table">
+                <div role="intro" class="seventy">
+                    <h2>Search School Districts and Charters</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <div class="pretty-table seventy">
                     <section id="pretty-table-search-options">
                         <input id="pretty-table-search" type="text" style="height:24px;" placeholder="Search School Districts">
                         <div><p class="pretty-table-button" id="execute-search">Search</p></div>
@@ -20,7 +24,6 @@
                             <thead>
                                 <th>District/Charter</th>
                                 <th>High-Needs Students</th>
-                                <th>2014-15 Funding</th>
                                 <th>2015-16 Estimate</th>
                                 <th>2020-21 Target</th>
                             </thead>
@@ -28,7 +31,6 @@
                             <tr>
                                 <td><a href="{{d.slug}}.html">{{d.target}}</a></td>
                                 <td>{{'{:.0f}'.format(d.high_needs|float*100)}}%</td>
-                                <td>${{('{0:,}'.format(d.y201415 | int))}}</td>
                                 <td>${{('{0:,}'.format(d.y201516 | int))}}</td>
                                 <td>${{('{0:,}'.format(d.y202021 | int))}}</td>                                             
                             </tr>
@@ -68,7 +70,7 @@
 
             /* CONFIGURE TABLESORTER
             ======================================*/ 
-            jQuery('#lcff-table').tablesorter({sortList:[1,1]});
+            jQuery('#lcff-table').tablesorter();
 
             /* SEARCH OPTIONS
             ======================================*/ 
