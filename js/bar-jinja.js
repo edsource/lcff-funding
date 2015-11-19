@@ -62,12 +62,6 @@ var barChart = {
 
 		barChart.parseData(p);
 	},
-	commaSeparateNumber:function(val){
-	    while (/(\d+)(\d{3})/.test(val.toString())){
-	      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-	    }
-	    return val;
-	},
 	parseData:function(p){
 		/* DATA AND DRAW
 		===============================================================================*/
@@ -98,7 +92,7 @@ var barChart = {
 
 		/* SCALE
 		==========================*/
-		var xScale = d3.scale.ordinal().rangeRoundBands([0, p.w - (p.m.left - 10)], p.padding);
+		var xScale = d3.scale.ordinal().rangeRoundBands([0, p.w - (p.m.left + p.m.right)], p.padding);
 		var yScale = d3.scale.linear().rangeRound([p.h, 0]);
 
 		/* AXES
@@ -114,23 +108,8 @@ var barChart = {
 		/* MAPS POS	
 		====================================*/
 		xScale.domain(data.map(function(d){ return d.xlabel;}));
+		yScale.domain([0, d3.max(data, function(d) {return d.value;})]).nice().clamp(true);	
 
-		if (p.max == null){
-			yScale.domain([0, d3.max(data, function(d) {
-				if (p.tickFormat === "$," || p.tickFormat === ",g"){
-					return parseInt(d.value);
-				}
-				else if (p.tickFormat === ".0%")  {
-					return parseFloat(d.value); 
-					
-				}
-			})]).nice().clamp(true);	
-		}
-		else {
-			yScale.domain([0, +p.max]).nice().clamp(true);
-		}
-
-		
 		/* SORT
 		====================================*/
 		if (p.sort == true || p.sort === 'true'){data.sort(function(a,b) {return b.value - a.value;})}
@@ -139,13 +118,12 @@ var barChart = {
 		====================================*/
 		chart.append('g').attr('class', 'xaxis').attr('transform', 'translate(0,' + p.h + ')').call(xAxis)
 			.selectAll(".tick text").call(barChart.wrapLabels, xScale.rangeBand());
-		chart.append('g').attr('class', 'yaxis').attr('transform','translate(10,0)').call(yAxis);
+		chart.append('g').attr('class', 'yaxis').attr('transform','translate(0,0)').call(yAxis);
 
 		/* TOOLTIP
 		====================================*/
 		var tip = d3.tip().html(function(d) { 
 			jQuery('.n').addClass('d3-tip');
-			console.log(d)
 			if (p.tickFormat == '.0%'){
 				return (d.xlabel + '<br>' + Math.round(d.value*100) + '%');
 			}
@@ -164,16 +142,15 @@ var barChart = {
 	     	.attr("x", function(d) { return xScale(d.xlabel); }).attr("width", xScale.rangeBand()).attr("y", function(d) { return yScale(d.value); }).attr("height", function(d) { return p.h - yScale(d.value); })
 	     	.style('fill', p.color).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-		/* ADJUST SVG
+		/* ADJUST CHART TEMP
 		====================================*/
 		jQuery(contain + ' svg').attr('height', p.h+(p.m.top * 2));
 		
+
 		/* ADD META DETAILS
 		=================================*/
 		jQuery(contain).prepend('<div id="meta"></div>');
-		jQuery(contain + ' #meta').append('<h2>'+p.title+'</h2>');
 		jQuery(contain + ' #meta').append('<p>'+p.subhed+'</p>');
-		jQuery(contain + ' #meta').append('<p>'+p.source+'</p>');
 
 		/* STYLES
 		=================================*/
@@ -182,11 +159,7 @@ var barChart = {
 		jQuery(contain + ' #meta h2').css({'margin':0});
 		jQuery(contain + ' #meta p:eq(0)').css({'margin':0});
 		jQuery(contain + ' #meta p:eq(1)').css({'font-style':'italic', 'font-size':'.9em','margin-top':'5px'});
-
-			
-
-			
-	
+				
 	},
 	wrapLabels: function(text, width){
 		text.each(function() {
@@ -199,7 +172,6 @@ var barChart = {
 		        y = text.attr("y"),
 		        dy = parseFloat(text.attr("dy")),
 		        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-		        console.log(text)
 		    while (word = words.pop()) {
 		      line.push(word);
 		      tspan.text(line.join(" "));
