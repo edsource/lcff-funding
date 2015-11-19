@@ -1,5 +1,5 @@
 var barChart = {
-	getAttr: function(type, path, contain, w, h, m, color, sort, xlabel, ylabel, tF, tick, pad, title, subhed, source, max, items){
+	getAttr: function(type, path, contain, w, h, m, color, sort, xlabel, ylabel, tF, tick, pad, title, subhed, source, max, items, path2){
 		var p = {
 			label:[],
 			data:[],
@@ -12,6 +12,7 @@ var barChart = {
 			tickFormat:null,
 			ticks:null,
 			path:null,
+			path2:null,
 			color:null,
 			padding:null,
 			sort:false,
@@ -23,11 +24,8 @@ var barChart = {
 			items: null
 		}
 		p.type = type;
-
-		console.log(path)
-
-		p.w = parseInt(w)// - m[1] - m[3];
-		p.h = parseInt(h)// - m[0] - m[2];
+		p.w = parseInt(w);
+		p.h = parseInt(h);
 		p.m = {
 			top:m[0],
 			right:m[1],
@@ -35,6 +33,7 @@ var barChart = {
 			left:m[3]
 		};
 		p.path = path;
+		p.path2 = path2;
 		p.contain = '#' + contain;
 		p.xaxisLabel = xlabel;
 		p.yaxisLabel = ylabel;
@@ -42,16 +41,10 @@ var barChart = {
 		p.ticks = tick;
 		p.items = items;
 
-		if (max !== null || max !== 'null'){
-			p.max = max;
-		}
+		if (max !== null || max !== 'null'){p.max = max;}
 
-		if (color === 'BuPu'){
-			p.color = '#198c96';
-		}
-		else {
-			p.color = color;
-		}
+		if (color === 'BuPu'){p.color = '#198c96';}
+		else {p.color = color;}
 		
 		p.padding = pad;
 		p.sort = sort;
@@ -62,7 +55,14 @@ var barChart = {
 
 		barChart.parseData(p);
 	},
+	commaSeparateNumber:function(val){
+	    while (/(\d+)(\d{3})/.test(val.toString())){
+	      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+	    }
+	    return val;
+	},
 	parseData:function(p){
+
 		/* DATA AND DRAW
 		===============================================================================*/
 		var data = new Array();
@@ -72,14 +72,17 @@ var barChart = {
 			switch (i){
 				case 0:
 					data[i].value = p.path.y201415;
+					data[i].value2 = p.path2.y201415;
 					data[i].xlabel = '2014-15 Funding';
 					break;
 				case 1:
 					data[i].value = p.path.y201516;
+					data[i].value2 = p.path2.y201516;
 					data[i].xlabel = '2015-16 Estimate';
 					break;
 				case 2:
 					data[i].value = p.path.y202021;
+					data[i].value2 = p.path2.y202021;
 					data[i].xlabel = '2020-21 Estimate';
 					break;
 			}	
@@ -138,15 +141,23 @@ var barChart = {
 
 		/* DRAW COLUMNS
 		====================================*/
-		chart.selectAll(".xitem").data(data).enter().append("rect").attr("class", "xitem")
-	     	.attr("x", function(d) { return xScale(d.xlabel); }).attr("width", xScale.rangeBand()).attr("y", function(d) { return yScale(d.value); }).attr("height", function(d) { return p.h - yScale(d.value); })
+	    //bar the first
+	    dual = chart.selectAll(".xitem").data(data).enter().append("rect").attr("class", "xitem")
+	     	.attr("x", function(d) { return xScale(d.xlabel); }).attr("width", xScale.rangeBand()/2).attr("y", function(d) { return yScale(d.value); }).attr("height", function(d) { return p.h - yScale(d.value); })
 	     	.style('fill', p.color).on('mouseover', tip.show).on('mouseout', tip.hide);
+	    
+	    //bar the first
+	    dual2 = chart.selectAll(".xitem2").data(data).enter().append("rect").attr("class", "xitem2")
+	     	.attr("x", function(d) { return xScale(d.xlabel) + xScale.rangeBand()/2; }).attr("width", xScale.rangeBand()/2).attr("y", function(d) { return yScale(d.value2); }).attr("height", function(d) { return p.h - yScale(d.value2); })
+	     	.style('fill', "#8DCBC6").on('mouseover', tip.show).on('mouseout', tip.hide);
+
+	    	
+	 
 
 		/* ADJUST CHART TEMP
 		====================================*/
 		jQuery(contain + ' svg').attr('height', p.h+(p.m.top * 2));
 		
-
 		/* ADD META DETAILS
 		=================================*/
 		jQuery(contain).prepend('<div id="meta"></div>');
@@ -155,10 +166,7 @@ var barChart = {
 		/* STYLES
 		=================================*/
 		jQuery(contain).css('width', parseInt(p.w)+ 'px');
-
-		jQuery(contain + ' #meta h2').css({'margin':0});
-		jQuery(contain + ' #meta p:eq(0)').css({'margin':0});
-		jQuery(contain + ' #meta p:eq(1)').css({'font-style':'italic', 'font-size':'.9em','margin-top':'5px'});
+		jQuery(contain + ' #meta p').css({'margin':0});
 				
 	},
 	wrapLabels: function(text, width){

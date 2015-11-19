@@ -20,6 +20,11 @@
         </div>
     </body>    
     <script type="text/javascript">
-        barChart.getAttr(null, {{data|safe}}, 'chart1', 400, 300, [50,40,30,50], 'BuPu', false, null, null, '$,', 5, .1, null, 'Local Control Funding Formula Grant Money per Student', null, null, 3);
+        var caliAvg = {
+            y201415:7813,
+            y201516:8792,
+            y202021:10700
+        }
+        barChart.getAttr(null, {{data|safe}}, 'chart1', 400, 300, [50,40,30,50], 'BuPu', false, null, null, '$,', 5, .1, null, 'Local Control Funding Formula Grant Money per Student', null, null, 3, caliAvg);
     </script>
 </html>
