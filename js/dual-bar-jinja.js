@@ -208,6 +208,13 @@ var barChart = {
 		====================================*/
 		jQuery(contain + ' svg').attr('height', p.h+(p.m.top * 2));
 		
+		/* ADD LEGEND
+		=================================*/
+		jQuery(contain).prepend('<div id="legend"></div>');
+		jQuery(contain + ' #legend').append('<div style="float:left;"><div style="background:'+p.color +'"></div><p>'+data[0].label+'</p></div>');
+		jQuery(contain + ' #legend').append('<div style="float:right;"><div style="background:'+p.color2 +'"></div><p>'+data[0].label2+'</p></div>');
+
+
 		/* ADD META DETAILS
 		=================================*/
 		jQuery(contain).prepend('<div id="meta"></div>');

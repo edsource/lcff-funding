@@ -11,10 +11,17 @@
 /* BODY STYLE 
 ===========================================*/
 #slick-body>div[role="intro"] {margin-bottom:4em;}
-
+#slick-body>div[role="header"] {}
+	#slick-body>div[role="header"] p {text-align: center;margin: 0;color: #666;font-family: 'Montserrat', san-serif;font-size:1em;}
 
 /* TABLE STYLE 
 ===========================================*/
+.temp-charts {border-top: 1px solid #aaa;margin: 3em auto;}
+	.temp-charts #meta p {text-align:center;font-size:1em;color:#333;}
+	.temp-charts #legend {overflow:hidden;width:75%;margin:1em auto 0 auto;}
+		.temp-charts #legend>div {}
+		.temp-charts #legend>div>div {width: 15px;height: 15px;float:left;}
+		.temp-charts #legend p {margin:-3px 0 0 5px;float:left;font-size:.9em;color:#666;}		
 .pretty-table {overflow:hidden;}
 	#slick-contain .pretty-table a {color:#4483b8;}
 #pretty-table-search-options {margin: 20px 0;}
