@@ -15,7 +15,11 @@
                     <p>{{object.county_name}} County</p>
                </div>
                <div class="temp-charts" id="chart1"></div>
+               <div role="caveat" class="twenty-five">
+                    <p>{% if object.floor_targ_caveat == 'TRUE' %} CAVEAT! {% endif %}{% if object.basic_aid  == 'TRUE' %} I'm a basic aid district, whomp.{% endif %}</p>
+               </div>
             </section>
+
             {% include 'footer.html' %}
         </div>
     </body>    
@@ -26,6 +30,6 @@
             y201516:8792,
             y202021:10700
         }
-        barChart.getAttr(null, {{data|safe}}, caliAvg, 'chart1', 400, 300, [50,40,30,50],'#198c96','#8DCBC6',false, null, null, '$,', 5, .1, null, 'Local Control Funding Formula Grant Money per Student', null, null, 3, 5);
+        barChart.getAttr(null, {{data|safe}}, caliAvg, 'chart1', 400, 300, [50,40,30,50],'#198c96','#8DCBC6',false, null, null, '$,', 5, .1, null, 'Funding per Student', null, null, 3, 5);
     </script>
 </html>

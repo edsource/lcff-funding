@@ -11,6 +11,7 @@ var barChart = {
 			yaxisLabel:null,
 			tickFormat:null,
 			ticks:null,
+			tickValues:[],
 			path:null,
 			path2:null,
 			color:null,
@@ -64,7 +65,7 @@ var barChart = {
 	    }
 	    return val;
 	},
-	roundTo:function(n, t){
+	roundTo:function(p, n, t){
 		// find length
 		var len = n.toString().length - 1, i=0;
 
@@ -85,6 +86,10 @@ var barChart = {
 
 		// build maximum value
 		while (i < len){n += '0'; i += 1;}
+
+		// give me five clean ticks yo
+		var x = parseInt(n) / p.ticks;
+		for (var i=1 ; i < p.ticks ; i++){p.tickValues.push(x*i);}
 	
 		return parseInt(n);
 	},
@@ -93,7 +98,6 @@ var barChart = {
 		/* DATA AND DRAW
 		===============================================================================*/
 		var data = new Array(), max = new Array();
-		console.log(p)
 		for (var i = 0 ; i < p.items ; i++){
 			data[i] = new Object();
 
@@ -125,7 +129,7 @@ var barChart = {
 		/* DETERMINE MAX
 		==========================*/
 		p.max = Math.max(...max);
-		p.max = barChart.roundTo(p.max, p.round);
+		p.max = barChart.roundTo(p, p.max, p.round);
 		console.log(p.max)
 		barChart.drawChart(p, data);
 	},
@@ -145,7 +149,7 @@ var barChart = {
 		/* AXES
 		==========================*/
 		var xAxis = d3.svg.axis().scale(xScale).orient('bottom');
-		var yAxis = d3.svg.axis().scale(yScale).orient('left').ticks(p.ticks).tickFormat(d3.format(p.tickFormat));
+		var yAxis = d3.svg.axis().scale(yScale).orient('left').tickValues([0,p.tickValues[0],p.tickValues[1],p.tickValues[2],p.tickValues[3],p.max]).tickFormat(d3.format(p.tickFormat));
 
 		/* CHART
 		==========================*/
@@ -211,9 +215,8 @@ var barChart = {
 		/* ADD LEGEND
 		=================================*/
 		jQuery(contain).prepend('<div id="legend"></div>');
-		jQuery(contain + ' #legend').append('<div style="float:left;"><div style="background:'+p.color +'"></div><p>'+data[0].label+'</p></div>');
-		jQuery(contain + ' #legend').append('<div style="float:right;"><div style="background:'+p.color2 +'"></div><p>'+data[0].label2+'</p></div>');
-
+		jQuery(contain + ' #legend').append('<div><div><div style="background:'+p.color +'"></div></div><div><p>'+data[0].label+'</p></div></div></div>');
+		jQuery(contain + ' #legend').append('<div><div><div style="background:'+p.color2 +'"></div></div><div><p>'+data[0].label2+'</p></div></div></div>');
 
 		/* ADD META DETAILS
 		=================================*/

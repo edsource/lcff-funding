@@ -13,15 +13,17 @@
 #slick-body>div[role="intro"] {margin-bottom:4em;}
 #slick-body>div[role="header"] {}
 	#slick-body>div[role="header"] p {text-align: center;margin: 0;color: #666;font-family: 'Montserrat', san-serif;font-size:1em;}
+#slick-body>div[role="caveat"] p {font-size: 1em;color: #555;}
 
 /* TABLE STYLE 
 ===========================================*/
-.temp-charts {border-top: 1px solid #aaa;margin: 3em auto;}
-	.temp-charts #meta p {text-align:center;font-size:1em;color:#333;}
+.temp-charts {border-top: 1px solid #aaa;margin: 3em auto 0 auto;}
+	.temp-charts #meta p {text-align:center;font-size:1em;color:#333;font-weight: 700;}
 	.temp-charts #legend {overflow:hidden;width:75%;margin:1em auto 0 auto;}
-		.temp-charts #legend>div {}
-		.temp-charts #legend>div>div {width: 15px;height: 15px;float:left;}
-		.temp-charts #legend p {margin:-3px 0 0 5px;float:left;font-size:.9em;color:#666;}		
+		.temp-charts #legend>div {display:inline-flex;float: left;width: 50%;}
+		.temp-charts #legend>div>div:first-of-type {width: 15px;float: left;}
+		.temp-charts #legend>div>div>div {width: 15px;height: 15px;}
+		.temp-charts #legend p {margin:-3px 0 0 5px;font-size:.9em;color:#666;}		
 .pretty-table {overflow:hidden;}
 	#slick-contain .pretty-table a {color:#4483b8;}
 #pretty-table-search-options {margin: 20px 0;}
@@ -36,4 +38,5 @@
 
 @media screen and (min-width:1028px){
 	.seventy {width: 70%;margin: 0 auto;}
+	.twenty-five {width: 25%;margin: 0 auto;}
 }
