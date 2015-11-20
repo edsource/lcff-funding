@@ -25,7 +25,7 @@ def detail(slug):
 	raw_data = get_csv('./static/data_all.csv')
 	for row in raw_data:
 		if row['slug'] == slug:
-			return render_template(template, object=row, data=json.dumps(row))
+			return render_template(template, all=raw_data, object=row, data=json.dumps(row))
 	abort(404)
 app.add_url_rule('/<slug>.html','detail', detail)
 

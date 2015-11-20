@@ -10,17 +10,31 @@
 
 /* BODY STYLE 
 ===========================================*/
+#slick-body h3 {text-align:center;margin-bottom: 2em;text-transform: uppercase;font-size: 1.5em;}
+
 #slick-body>div[role="intro"] {margin-bottom:4em;}
+
 #slick-body>div[role="header"] {}
 	#slick-body>div[role="header"] p {text-align: center;margin: 0;color: #666;font-family: 'Montserrat', san-serif;font-size:1em;}
+
 #slick-body>div[role="caveat"] p {font-size: 1em;color: #555;}
+
+#slick-body>div[role="facts"] h4 {text-align:center;color:#198c96;font-size:1.2em;}
+#slick-body>div[role="facts"] p {text-align:center;margin: 0 0 1em 0;}
+
+#slick-body>div[role="links"] {margin-top:3em;}
+#slick-body>div[role="links"] p {text-align:center;margin: 0 0 1em 0;font-size:1em;color:#555;}
+#slick-body>div[role="links"] a {text-align:center;margin: 0 0 1em 0;font-size:1em;color:#555;}
+#slick-body>div[role="links"] a p {text-align:left;margin: 0 0 1em 0;font-size:1em;color:#555;}
+
+
 
 /* TABLE STYLE 
 ===========================================*/
 .temp-charts {border-top: 1px solid #aaa;margin: 3em auto 0 auto;}
 	.temp-charts #meta p {text-align:center;font-size:1em;color:#333;font-weight: 700;}
 	.temp-charts #legend {overflow:hidden;width:75%;margin:1em auto 0 auto;}
-		.temp-charts #legend>div {display:inline-flex;float: left;width: 50%;}
+		.temp-charts #legend>div {display:inline-flex;float: left;width: 48%;}
 		.temp-charts #legend>div>div:first-of-type {width: 15px;float: left;}
 		.temp-charts #legend>div>div>div {width: 15px;height: 15px;}
 		.temp-charts #legend p {margin:-3px 0 0 5px;font-size:.9em;color:#666;}		
