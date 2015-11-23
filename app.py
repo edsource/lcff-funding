@@ -29,6 +29,13 @@ def detail(slug):
 	abort(404)
 app.add_url_rule('/<slug>.html','detail', detail)
 
+## COMPARE PAGE ##
+@app.route('/compare-districts-charters.html')
+def compare():
+	template = 'compare.html'
+	raw_data = get_csv('./static/data_all.csv')
+	return render_template(template, data=raw_data)
+
 
 ## SEARCH PAGE ##
 @app.route('/search.html')

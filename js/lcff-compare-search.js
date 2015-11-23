@@ -12,13 +12,15 @@ var searchTool = {
 		})
 	},
 	calibrateSearch:function(d, r){
-		jQuery('#search-bar').on('keyup', function(e){
+		jQuery('.search-bar').on('keyup', function(e){
 		    var key = e.which,
-		    	text = document.getElementById('search-bar').value;
-		    if (key){searchTool.retrieveResults(text, d, r);}
+		    	bar = jQuery(this).attr('role'),
+		    	link = jQuery(this).attr('link'),
+		    	text = jQuery(this).val();
+		    if (key){searchTool.retrieveResults(text, d, r, bar, link);}
 		});
 	},
-	retrieveResults:function(search, d, r){
+	retrieveResults:function(search, d, r, c, l){
 		var re = new RegExp(search, 'i');
 		r.length = 0; //clear results
 
@@ -31,14 +33,23 @@ var searchTool = {
 			}
 		}
 
-		searchTool.populateResults(r);
+		searchTool.populateResults(r,c,l);
 	},
-	populateResults:function(r){
+	populateResults:function(r, c, l){
 		jQuery('div[role="results"]').empty();
 
 		for (var i=0 ; i < r.length ; i++){
-			jQuery('div[role="results"]').append('<a href="'+r[i][1]+'.html"><div><h2>'+r[i][0]+'</h2><h4>'+r[i][2]+'</h4></div></a>');
+			if (l === 'yes'){jQuery('.lcff-results').append('<a href="'+r[i][1]+'.html"><div><h2>'+r[i][0]+'</h2><h4>'+r[i][2]+'</h4></div></a>');}
+			else if (l === 'no') {jQuery('.lcff-results').append('<a href="#" data="'+i+'" onclick="return false;"><div><h2>'+r[i][0]+'</h2><h4>'+r[i][2]+'</h4></div></a>');}
 		}
+
+		jQuery('div[role="results"] a').on('click', function(){
+			var id = jQuery(this).attr('data'),
+				target = jQuery('div[role="results"] a:eq('+id+') h2').text();
+	
+			jQuery('.search-bar[role="'+c+'"]').val(target);
+			jQuery('div[role="results"]').empty();
+		})
 	}
 }
 

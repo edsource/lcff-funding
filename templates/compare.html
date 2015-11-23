@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"><title>Compare School Districts and Charters | EdSource</title></meta>
+        {% include 'header.html' %}
+        <script type="text/javascript" src="http://edsource.org/wp-content/js/lcff-compare-search.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://edsource.org/wp-content/css/charts/bar.css">
+        <script type="text/javascript" src="http://edsource.org/wp-content/js/charts/bar-jinja.js"></script>
+    </head>
+    <body>
+        <div id="slick-contain">
+            {% include 'nav.html' %}
+            <section id="slick-body">
+                <div role="intro" class="fifty">
+                    <h2>Compare School Districts and Charters</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <div class="temp-charts" id="chart1"></div>
+                <div class="twenty-five" role="choices">
+                    <div>
+                        <h4>First District/Charter</h4>
+                        <input link="no" class="search-bar" role="0" type="text" style="height:24px;" placeholder="Option 1">
+                        
+                    </div>
+                    <div>
+                        <h4>Second District/Charter</h4>
+                        <input link="no" class="search-bar" role="1" type="text" style="height:24px;" placeholder="Option 2">
+                    </div>
+                </div>
+                <div role="results" class="lcff-results twenty-five" type="0"></div>
+            </section>  
+            {% include 'footer.html' %}    
+        </div>
+    </body>    
+    <script type="text/javascript">
+        var data = {{data|safe}};
+
+       //barChart.getAttr(null, , , 'chart1', 360, 300, [50,40,30,50],'#198c96','#8DCBC6',false, null, null, '$,', 5, .1, null, 'Funding per Student', null, null, 3, 5);
+    </script>
+</html>
