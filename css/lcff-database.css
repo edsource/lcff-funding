@@ -31,7 +31,8 @@
 #slick-body>div[role="links"] a {text-align:center;margin: 0 0 1em 0;font-size:1em;color:#555;}
 #slick-body>div[role="links"] a p {text-align:left;margin: 0 0 1em 0;font-size:1em;color:#555;}
 
-#slick-body>div[role="choices"]>div {display: inline-block;margin-right:25px;}
+#slick-body>div[role="choices"]>div {display: inline-block;}
+#slick-body>div[role="choices"]>div:first-of-type {margin-right:90px;}
 
 
 

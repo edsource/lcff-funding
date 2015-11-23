@@ -33,8 +33,29 @@
         </div>
     </body>    
     <script type="text/javascript">
-        var data = {{data|safe}};
+        var data = {{data|safe}},
+            targets = ['ABC Unified', 'Abernathy Collegiate Charter'],
+            targData = [];
 
-       //barChart.getAttr(null, , , 'chart1', 360, 300, [50,40,30,50],'#198c96','#8DCBC6',false, null, null, '$,', 5, .1, null, 'Funding per Student', null, null, 3, 5);
+        //initialize chart 
+        grabData(data, 0, targets[0]);
+        grabData(data, 1, targets[1]);
+        barChart.getAttr(null, targData[0], targData[1], 'chart1', 360, 300, [50,40,30,50],'#198c96','#8DCBC6',false, null, null, '$,', 5, .1, null, 'Funding per Student', null, null, 3, 5);
+        
+        function updateChart(d, c, t){
+            jQuery('.temp-charts').empty();
+            grabData(data, parseInt(c), t);
+            grabData(data, parseInt(c), t);
+            barChart.getAttr(null, targData[0], targData[1], 'chart1', 360, 300, [50,40,30,50],'#198c96','#8DCBC6',false, null, null, '$,', 5, .1, null, 'Funding per Student', null, null, 3, 5);
+        }
+
+        function grabData(d, c, t) {
+            //Retrieve correct data
+            for (var i = 0 ; i < d.length ; i++){
+                var target = d[i].target;
+                if (t === target){targData[c] = d[i];break;}
+            }
+        }
+
     </script>
 </html>

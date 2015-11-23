@@ -49,6 +49,8 @@ var searchTool = {
 	
 			jQuery('.search-bar[role="'+c+'"]').val(target);
 			jQuery('div[role="results"]').empty();
+
+			if (l === 'no'){updateChart(data, c, target);}
 		})
 	}
 }
