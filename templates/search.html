@@ -50,6 +50,7 @@
             /* SEARCH STRING
             ======================================*/    
             var val = jQuery.trim(jQuery('#pretty-table-search').val()).replace(/ +/g, ' ').toLowerCase();
+
             if (val === ''){
                 jQuery(allRows).css('display','table-row');
             }
@@ -80,7 +81,96 @@
             jQuery('#reset-search').on('click', function(){
                 jQuery('tr').css('display','table-row');
                 jQuery('#pretty-table-search').val('');
+                jQuery('.pretty-table tbody tr').slice(10).hide();
             })
         })
+
+        window.onload = function(){
+            /* TRUNCATION
+            ======================================*/
+            //hide all rows past 10th as default
+            jQuery('.pretty-table tbody tr').slice(10).hide();
+
+            //add navigation buttons
+            jQuery('.pretty-table').append('<div class="pretty-table-nav"><p first="1"><a>Previous</a></p><p status="0"><a>Expand Rows</a></p><p last="10"><a>Next</a></p></div>');
+
+            // Next Rows
+            jQuery('.pretty-table .pretty-table-nav p:eq(2)').on('click', function(){
+                var last = parseInt(jQuery(this).attr('last')), total = jQuery('.pretty-table tbody tr').size();
+
+                //show previous
+                jQuery('.pretty-table .pretty-table-nav p:eq(0)').css('display', 'inline');
+                
+                //make sure we don't hide all the rows
+                if (total === last){return;}
+                else if ((last+10) > total){
+                    jQuery('.pretty-table tbody tr').hide();
+                    jQuery('.pretty-table tbody tr').slice(last, total).show();
+                    jQuery(this).attr('last', total);
+                }
+                else {
+                    jQuery('.pretty-table tbody tr').hide();
+                    jQuery('.pretty-table tbody tr').slice(last, last+10).show();
+                    last += 10;
+                    jQuery(this).attr('last', last);
+                }       
+
+                //do we need a next?
+                if (total === last){jQuery('.pretty-table .pretty-table-nav p:eq(2)').hide();}  
+
+                //update previous data
+                jQuery('.pretty-table .pretty-table-nav p:eq(0)').attr('first', last-9);
+
+            });
+
+            // Expand All or Collapse
+            jQuery('.pretty-table .pretty-table-nav p:eq(1)').on('click', function(){
+                var status = parseInt(jQuery(this).attr('status'));
+
+                if (status == 0){
+                    jQuery('.pretty-table tbody tr').show();
+                    jQuery('.pretty-table .pretty-table-nav p:eq(1) a').text('Collapse Rows');
+                    jQuery('.pretty-table .pretty-table-nav p:eq(0)').attr('first', '1').hide();
+                    jQuery('.pretty-table .pretty-table-nav p:eq(2)').attr('last', '10').hide();
+                    jQuery(this).attr('status', '1');
+                }
+                else if (status == 1){
+                    jQuery('.pretty-table tbody tr').slice(10).hide();
+                    jQuery('.pretty-table .pretty-table-nav p:eq(1) a').text('Expand Rows');
+                    jQuery('.pretty-table .pretty-table-nav p:eq(2)').css('display', 'inline');
+                    jQuery(this).attr('status', '0');
+                }
+                
+            });
+
+            // Previous Rows
+            jQuery('.pretty-table .pretty-table-nav p:eq(0)').on('click', function(){
+                var first = parseInt(jQuery(this).attr('first'));
+
+                //show next
+                jQuery('.pretty-table .pretty-table-nav p:eq(2)').css('display', 'inline');
+
+                //make sure we don't hide all the rows
+                if (first == 1){return;}
+                else if ((first-10) < 1){
+                    jQuery('.pretty-table tbody tr').hide();
+                    jQuery('.pretty-table tbody tr').slice(0, 10).show();
+                    jQuery(this).attr('first', 1);
+                }
+                else {
+                    jQuery('.pretty-table tbody tr').hide();
+                    jQuery('.pretty-table tbody tr').slice(first-11, first-1).show();
+                    first -= 10;
+                    jQuery(this).attr('first', first);
+                }       
+
+                //update next data
+                jQuery('.pretty-table .pretty-table-nav p:eq(2)').attr('last', first+9);
+
+                //do we need a previous?
+                if (first === 1){jQuery('.pretty-table .pretty-table-nav p:eq(0)').hide();} 
+
+            });
+        }
     </script>
 </html>
