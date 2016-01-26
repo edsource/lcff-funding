@@ -17,7 +17,7 @@ var searchTool = {
 		    	bar = jQuery(this).attr('role'),
 		    	link = jQuery(this).attr('link'),
 		    	text = jQuery(this).val();
-		    if (key){searchTool.retrieveResults(text, d, r, bar, link);}
+		    text.length > 2 ? searchTool.retrieveResults(text, d, r, bar, link) : jQuery('div[role="results"]').empty()
 		});
 	},
 	retrieveResults:function(search, d, r, c, l){
