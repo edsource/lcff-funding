@@ -6,12 +6,12 @@
         {% include 'header.html' %}
     </head>
     <body>
+        <section id="loading"></section>
         <div id="slick-contain">
             {% include 'nav.html' %}
             <section id="slick-body">
                 <div role="intro" class="seventy">
                     <h2>Search School Districts and Charters</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 </div>
                 <div class="pretty-table seventy">
                     <div id="pretty-table-top"><i class="fa fa-arrow-up"></i></div>
@@ -44,6 +44,9 @@
         </div>
     </body>    
     <script type="text/javascript">
+
+         /* SEARCH
+        ===========================*/
         function searchTool(c){
             var jQueryrows = jQuery(c + ' tr');
             var allRows = jQuery(c + ' tr:not('+ c +' thead tr)');
@@ -67,6 +70,20 @@
                  }
             }   
         }
+
+        /* LOAD CHECK
+        ===========================*/
+        function onReady(callback) {
+            var intervalID = window.setInterval(checkReady, 1000);
+            function checkReady() {
+                if (document.getElementsByTagName('body')[0] !== undefined) {
+                    window.clearInterval(intervalID);
+                    callback.call(this);
+                }
+            }
+        }
+        onReady(function () {jQuery('#loading').remove();});
+
 
         jQuery(document).ready(function(){
 

@@ -4,6 +4,7 @@
         <meta charset="utf-8"><title>{{object.target}} School Finance | EdSource</title></meta>
         {% include 'header.html' %}
         <link rel="stylesheet" type="text/css" href="/static/bar.css">
+        <script type="text/javascript" src="/static/lcff-compare-search.js"></script>
         <script type="text/javascript" src="/static/dual-bar-jinja.js"></script>
     </head>
     <body>
@@ -31,6 +32,13 @@
                     <h4>2020-21 Target</h4>
                     <p>${{('{0:,}'.format(object.y202021 | int))}}/student</p>
                </div>
+                <div role="search" class="twenty-five">
+                    <div>
+                        <h3>Search Districts and Charters</h3>
+                        <input class="search-bar" link="yes" role="0" type="text" style="height:24px;" placeholder="Type Districts, Charters, or County Name Here">
+                    </div>
+                </div>
+                <div class="lcff-results twenty-five" role="results" type="0"></div>
                <div role="links" class="twenty-five">
                     <h3>Related Districts and Charters</h3>
                     {% for d in all %}

@@ -36,7 +36,7 @@
 
 /* SEARCH STYLE 
 ===========================================*/
-#slick-body>div[role="search"] {}
+#slick-body>div[role="search"] {border: 1px solid #333;padding: 1em 1em;background: #d8e6f1;}
 	#slick-body>div[role="search"] input {width:100%;}  
 #slick-body div[role="results"] {max-height: 200px;overflow: scroll;border-bottom: #ddd solid 2px;margin-top: 1em;border-top: #ddd solid 2px;background: #fff;}
 	#slick-body div[role="results"] div {padding: .5em 0;border-bottom: 1px solid #aaa;}
@@ -48,6 +48,8 @@
 
 /* TABLE STYLE 
 ===========================================*/
+#loading {background-color: rgba(192, 192, 192, 0.5);background-image: url("/static/loading.gif");background-repeat: no-repeat;background-position: center;width: 100vw;height: 100vh;position: fixed;left:0;}
+
 .temp-charts {border-top: 1px solid #aaa;margin: 3em auto 0 auto;}
 	.temp-charts #meta p {text-align:center;font-size:1em;color:#333;font-weight: 700;}
 	.temp-charts #legend {overflow:hidden;width:75%;margin:1em auto 0 auto;}
