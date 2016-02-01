@@ -44,6 +44,13 @@ def search():
 	raw_data = get_csv('./static/data_all.csv')
 	return render_template(template, data=raw_data)
 
+## SEARCH PAGE ##
+@app.route('/basic_aid.html')
+def basic_aid():
+	template = 'basic_aid.html'
+	raw_data = get_csv('./static/data_aid.csv')
+	return render_template(template, data=raw_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)

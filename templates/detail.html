@@ -19,7 +19,6 @@
                <div class="temp-charts" id="chart1"></div>
                <div role="facts" class="twenty-five">
                     <h3>Key Facts</h3>
-                    {% if object.basic_aid  == 'TRUE' %}<h4>Basic Aid District</h4><p><em> I'm a basic aid district, whomp.</em></p>{% endif %}
                     <h4>Avg Daily Attendance</h4>
                     <p>{{('{0:,}'.format(object.ada | int))}}</p>
                     <h4>High-Needs Students</h4>
@@ -30,12 +29,13 @@
                     <p>${{('{0:,}'.format(object.y201516 | int))}}/student</p>
                     <h4>2020-21 Target</h4>
                     <p>${{('{0:,}'.format(object.y202021 | int))}}/student
-                    {% if object.floor_targ_caveat == 'TRUE'%}<br \><em>I'm a caveat</em>  
+                    {% if object.floor_targ_caveat == 'TRUE'%}<br \><em>This is one of the 42 non-basic aid districts or charter schools in our database that received the most per student revenue under the finance system that preceded the Local Control Funding Formula. They continue to receive what they got in 2012-13, the last year under the old “revenue limits” formula. Their 2016-17 and full-funding projections reflect their 2012-13 levels without annual cost-of-living adjustments.</em>  
                     {% endif%}</p>
                </div>
                 <div role="search" class="twenty-five">
                     <div>
                         <h3>Search Districts and Charters</h3>
+                        <p>Basic Aid districts can be found by clicking on "Basic Aid" in the navigation bar at the top.</p>
                         <input class="search-bar" link="yes" role="0" type="text" style="height:24px;" placeholder="Type Districts, Charters, or County Name Here">
                     </div>
                 </div>
