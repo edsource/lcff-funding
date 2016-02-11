@@ -36,6 +36,7 @@
 
 /* SEARCH STYLE 
 ===========================================*/
+#slick-contain a {color:#b3cde3;}
 #slick-body>div[role="search"] {border: 1px solid #333;padding: 1em 1em;background: #d8e6f1;}
 	#slick-body>div[role="search"]>div h3 {margin:0;}
 	#slick-body>div[role="search"]>div p {font-style: italic;font-size: 1rem;}

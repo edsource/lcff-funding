@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"><title>Search School Districts and Charters | EdSource</title></meta>
-        <link rel="stylesheet" type="text/css" href="http://edsource.org/local-control-funding-formula-database/static/table.css">
+        <meta charset="utf-8"><title>Search Basic Aid Districts | EdSource</title></meta>
+        <link rel="stylesheet" type="text/css" href="/static/table.css">
         {% include 'header.html' %}
     </head>
     <body>
@@ -11,9 +11,9 @@
             {% include 'nav.html' %}
             <section id="slick-body">
                 <div role="intro" class="seventy">
-                    <h2>Search School Districts and Charters</h2>
+                    <h2>Search Basic Aid Districts</h2>
                     {% include 'social.html' %}
-                    <p>Basic Aid districts can be found by clicking on "Basic Aid" in the navigation bar at the top.</p>
+                    <p>"Basic aid" districts receive little state funding, because their revenue from local property tax revenues exceed what they would receive under the Local Control Funding Formula.</p>
                 </div>
                 <div class="pretty-table seventy">
                     <div id="pretty-table-top"><i class="fa fa-arrow-up"></i></div>
@@ -25,17 +25,17 @@
                     <section>
                          <table id="lcff-table" cellpadding=7>
                             <thead>
-                                <th>District/Charter</th>
+                                <th>District</th>
+                                <th>Average Daily Attendance</th>
                                 <th>High-Needs Students</th>
-                                <th>2015-16 Estimate</th>
-                                <th>2020-21 Target</th>
+                                <th>2014-15 Funding</th>
                             </thead>
                             {% for d in data %}
                             <tr>
-                                <td><a href="{{d.slug}}.html">{{d.target}}</a></td>
+                                <td>{{d.target}}</td>
+                                <td>{{('{0:,}'.format(d.ada | int))}}</td>                                            
                                 <td>{{'{:.0f}'.format(d.high_needs|float*100)}}%</td>
-                                <td>${{('{0:,}'.format(d.y201516 | int))}}</td>
-                                <td>${{('{0:,}'.format(d.y202021 | int))}}</td>                                            
+                                <td>${{('{0:,}'.format(d.y201415 | int))}}</td>
                             </tr>
                             {% endfor %}
                         </table>
