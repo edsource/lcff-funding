@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"><title>Search Basic Aid Districts | EdSource</title></meta>
+        <link rel="stylesheet" type="text/css" href="http://edsource.org/local-control-funding-formula-database/static/table.css">
+        
+<meta name="description" content="A non-profit journalism website reporting on key education issues in California and beyond."></meta>
+<meta name="tags" content="education news, california education, non-profit news, common core, local control funding formula, k-12 education, smarter balanced"></meta> 
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' id='default_css-css'  href='http://edsource.org/wp-content/themes/nakatomi/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='default_css-css'  href='http://edsource.org/wp-content/themes/nakatomi/templates/slick/slick.css' type='text/css' media='all' />
+<link rel='stylesheet' id='default_css-css'  href='http://edsource.org/local-control-funding-formula-database/static/lcff-database.css' type='text/css' media='all' />
+<link rel="shortcut icon" href="http://edsource.org/wp-content/themes/nakatomi/styles/graphics/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+<script src="http://edsource.org/wp-content/js/d3.tip.v0.6.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://edsource.org/wp-content/js/colorbrewer.js"></script>
+<script type="text/javascript" src="http://edsource.org/wp-content/js/jquery.tablesorter.min.js"></script>
+    </head>
+    <body>
+        <section id="loading"></section>
+        <div id="slick-contain">
+            <section id="slick-header">
+    <div class="slick-site">
+        <h2><a href="http://edsource.org/">EdSource</a></h2>
+    </div>
+    <div><h2><a href="http://edsource.org/local-control-funding-formula-database">Local Control Funding Database</a></h2></div>
+     <div class="slick-social-hed">
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'TWITTER', '');" href="https://twitter.com/share?url=http%3A%2F%2Fedsource.org%2F%3Flocal%2Dcontrol%2Dfunding%2Dformula%2Ddatabase&via=edsource&text="><i class="fa fa-twitter"></i></a>
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'FB', '');" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fedsource.org%2F%3Flocal%2Dcontrol%2Dfunding%2Dformula%2Ddatabase"><i class="fa fa-facebook"></i></a>
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'LINKED', '');" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fedsource.org%2F%3Flocal%2Dcontrol%2Dfunding%2Dformula%2Ddatabase&title=: &summary=&source=EdSource"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <div class="slick-nav-hed">
+        <a href="http://edsource.org/local-control-funding-formula-database/search.html">Search</a>
+        <a href="http://edsource.org/local-control-funding-formula-database/compare-districts-charters.html">Compare</a>
+        <a href="http://edsource.org/?p=89272">Guide</a>
+        <a href="http://edsource.org/local-control-funding-formula-database/basic_aid.html">Basic Aid</a>
+    </div>
+
+</section>
+            <section id="slick-body">
+                <div role="intro" class="seventy">
+                    <h2>Search Basic Aid Districts</h2>
+                    <div style="width:246px;margin:0 auto;">
+    <div class="slick-social">
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'TWITTER', '');" class="slickTwit" target="_blank" href=""><i class="fa fa-twitter"></i></a>
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'FB', '');" class="slickFB" target="_blank" href=""><i class="fa fa-facebook"></i></a>
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'LINKED', '');" class="slickLink" target="_blank" href=""><i class="fa fa-linkedin"></i></a>
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'DONATE', '');" target="_blank" href="http://edsource.org/donate"><i class="fa fa-usd"></i></a>
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'EMAIL', '');" class="slickEmail" href=""><i class="fa fa-envelope"></i></a>
+        <a onclick="ga('send','event', 'LCFF DATABASE', 'PRINT', '');" onclick="window.print();return false;"><i class="fa fa-print"></i></a>
+    </div>
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+	    /* POPULATE SOCIAL
+	    =======================================*/   
+	    var URL = window.location.href;
+
+	    jQuery('.slickEmail').attr('href', 'mailto:?subject=Sharing &body=Just sharing this story from EdSource with you. ' + URL);
+	    jQuery('.slickFB').add('.slick-social-hed a:eq(1)').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + URL);
+	    jQuery('.slickTwit').add('.slick-social-hed a:eq(0)').attr('href', 'https://twitter.com/share?url=' + URL + '&via=edsource&text=');
+	    jQuery('.slickLink').add('.slick-social-hed a:eq(2)').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+URL+'&title=: &summary=&source=EdSource');
+	})
+</script>
+                    <p>"Basic aid" districts receive little state funding, because their revenue from local property tax revenues exceed what they would receive under the Local Control Funding Formula.</p>
+                </div>
+                <div class="pretty-table seventy">
+                    <div id="pretty-table-top"><i class="fa fa-arrow-up"></i></div>
+                    <section id="pretty-table-search-options">
+                        <input id="pretty-table-search" type="text" style="height:24px;" placeholder="Search School Districts">
+                        <div><p class="pretty-table-button" id="execute-search">Search</p></div>
+                        <div><p class="pretty-table-button" id="reset-search">Reset</p></div>
+                    </section>
+                    <section>
+                         <table id="lcff-table" cellpadding=7>
+                            <thead>
+                                <th>District</th>
+                                <th>Average Daily Attendance</th>
+                                <th>High-Needs Students</th>
+                                <th>2014-15 Funding</th>
+                            </thead>
+                            
+                            <tr>
+                                <td>Newport-Mesa Unified</td>
+                                <td>21,172</td>                                            
+                                <td>48%</td>
+                                <td>$9,730</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Santa Clara Unified</td>
+                                <td>14,833</td>                                            
+                                <td>55%</td>
+                                <td>$7,698</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>San Dieguito Union High</td>
+                                <td>12,121</td>                                            
+                                <td>9%</td>
+                                <td>$7,197</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Palo Alto Unified</td>
+                                <td>11,518</td>                                            
+                                <td>17%</td>
+                                <td>$11,884</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Fremont Union High</td>
+                                <td>10,446</td>                                            
+                                <td>19%</td>
+                                <td>$9,425</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>South San Francisco Unified</td>
+                                <td>8,966</td>                                            
+                                <td>48%</td>
+                                <td>$7,364</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Sequoia Union High</td>
+                                <td>7,963</td>                                            
+                                <td>40%</td>
+                                <td>$12,097</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>San Mateo Union High</td>
+                                <td>7,949</td>                                            
+                                <td>27%</td>
+                                <td>$13,186</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Campbell Union High</td>
+                                <td>7,192</td>                                            
+                                <td>26%</td>
+                                <td>$9,087</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>San Luis Coastal Unified</td>
+                                <td>7,128</td>                                            
+                                <td>41%</td>
+                                <td>$8,608</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Sunnyvale</td>
+                                <td>6,657</td>                                            
+                                <td>56%</td>
+                                <td>$7,106</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Encinitas Union Elementary</td>
+                                <td>5,219</td>                                            
+                                <td>16%</td>
+                                <td>$7,319</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Los Altos Elementary</td>
+                                <td>4,565</td>                                            
+                                <td>14%</td>
+                                <td>$6,508</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Del Mar Union Elementary</td>
+                                <td>4,272</td>                                            
+                                <td>12%</td>
+                                <td>$8,621</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Beverly Hills Unified</td>
+                                <td>4,169</td>                                            
+                                <td>11%</td>
+                                <td>$8,900</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Sonoma Valley Unified</td>
+                                <td>4,048</td>                                            
+                                <td>62%</td>
+                                <td>$7,201</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Tamalpais Union High</td>
+                                <td>3,995</td>                                            
+                                <td>8%</td>
+                                <td>$12,186</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Mountain View-Los Altos Union High</td>
+                                <td>3,756</td>                                            
+                                <td>23%</td>
+                                <td>$14,216</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Belmont-Redwood Shores Elementary</td>
+                                <td>3,705</td>                                            
+                                <td>14%</td>
+                                <td>$6,168</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Goleta Union Elementary</td>
+                                <td>3,577</td>                                            
+                                <td>50%</td>
+                                <td>$9,219</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Tahoe-Truckee Unified</td>
+                                <td>3,539</td>                                            
+                                <td>44%</td>
+                                <td>$9,888</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Los Gatos Union Elementary</td>
+                                <td>3,229</td>                                            
+                                <td>6%</td>
+                                <td>$6,729</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Los Gatos-Saratoga Joint Union High</td>
+                                <td>3,175</td>                                            
+                                <td>3%</td>
+                                <td>$11,621</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Solana Beach Elementary</td>
+                                <td>3,053</td>                                            
+                                <td>18%</td>
+                                <td>$10,271</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Laguna Beach Unified</td>
+                                <td>2,946</td>                                            
+                                <td>11%</td>
+                                <td>$14,277</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Menlo Park City Elementary</td>
+                                <td>2,726</td>                                            
+                                <td>11%</td>
+                                <td>$8,664</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Santa Cruz City Elementary</td>
+                                <td>2,661</td>                                            
+                                <td>47%</td>
+                                <td>$7,050</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Carmel Unified</td>
+                                <td>2,414</td>                                            
+                                <td>17%</td>
+                                <td>$15,468</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>San Rafael City High</td>
+                                <td>2,200</td>                                            
+                                <td>47%</td>
+                                <td>$9,765</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Carpinteria Unified</td>
+                                <td>2,165</td>                                            
+                                <td>68%</td>
+                                <td>$8,330</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Saratoga Union Elementary</td>
+                                <td>2,089</td>                                            
+                                <td>7%</td>
+                                <td>$10,731</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Pacific Grove Unified</td>
+                                <td>2,086</td>                                            
+                                <td>24%</td>
+                                <td>$9,050</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Plumas Unified</td>
+                                <td>1,775</td>                                            
+                                <td>51%</td>
+                                <td>$8,020</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Reed Union Elementary</td>
+                                <td>1,510</td>                                            
+                                <td>4%</td>
+                                <td>$8,243</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Hillsborough City Elementary</td>
+                                <td>1,505</td>                                            
+                                <td>1%</td>
+                                <td>$10,211</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Healdsburg Unified</td>
+                                <td>1,463</td>                                            
+                                <td>65%</td>
+                                <td>$9,836</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Las Lomitas Elementary</td>
+                                <td>1,269</td>                                            
+                                <td>10%</td>
+                                <td>$11,066</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>St. Helena Unified</td>
+                                <td>1,201</td>                                            
+                                <td>44%</td>
+                                <td>$19,487</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Mammoth Unified</td>
+                                <td>1,145</td>                                            
+                                <td>61%</td>
+                                <td>$7,794</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Santa Ynez Valley Union High</td>
+                                <td>1,012</td>                                            
+                                <td>26%</td>
+                                <td>$10,372</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Hope Elementary</td>
+                                <td>1,011</td>                                            
+                                <td>35%</td>
+                                <td>$7,311</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Taft Union High</td>
+                                <td>994</td>                                            
+                                <td>57%</td>
+                                <td>$42,874</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Calistoga Joint Unified</td>
+                                <td>800</td>                                            
+                                <td>79%</td>
+                                <td>$13,718</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Cardiff Elementary</td>
+                                <td>715</td>                                            
+                                <td>14%</td>
+                                <td>$8,883</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Nevada City Elementary</td>
+                                <td>711</td>                                            
+                                <td>32%</td>
+                                <td>$7,252</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Coast Unified</td>
+                                <td>708</td>                                            
+                                <td>65%</td>
+                                <td>$12,082</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Bret Harte Union High</td>
+                                <td>680</td>                                            
+                                <td>40%</td>
+                                <td>$12,195</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Rancho Santa Fe Elementary</td>
+                                <td>667</td>                                            
+                                <td>5%</td>
+                                <td>$12,005</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Portola Valley Elementary</td>
+                                <td>578</td>                                            
+                                <td>11%</td>
+                                <td>$15,942</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Vallecito Union Elementary</td>
+                                <td>557</td>                                            
+                                <td>40%</td>
+                                <td>$9,070</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Shoreline Unified</td>
+                                <td>494</td>                                            
+                                <td>63%</td>
+                                <td>$14,789</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Montecito Union Elementary</td>
+                                <td>484</td>                                            
+                                <td>10%</td>
+                                <td>$21,775</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Loma Prieta Joint Union Elemen</td>
+                                <td>478</td>                                            
+                                <td>8%</td>
+                                <td>$6,486</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Brisbane Elementary</td>
+                                <td>462</td>                                            
+                                <td>29%</td>
+                                <td>$9,354</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Mendocino Unified</td>
+                                <td>424</td>                                            
+                                <td>39%</td>
+                                <td>$11,133</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Eastern Sierra Unified</td>
+                                <td>421</td>                                            
+                                <td>43%</td>
+                                <td>$15,080</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Woodside Elementary</td>
+                                <td>404</td>                                            
+                                <td>12%</td>
+                                <td>$14,392</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Ross Elementary</td>
+                                <td>365</td>                                            
+                                <td>1%</td>
+                                <td>$10,255</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Lone Pine Unified</td>
+                                <td>359</td>                                            
+                                <td>66%</td>
+                                <td>$14,241</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Big Oak Flat-Groveland Unified</td>
+                                <td>334</td>                                            
+                                <td>65%</td>
+                                <td>$11,399</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>La Honda-Pescadero Unified</td>
+                                <td>329</td>                                            
+                                <td>66%</td>
+                                <td>$10,265</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Twain Harte</td>
+                                <td>283</td>                                            
+                                <td>64%</td>
+                                <td>$8,460</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>College Elementary</td>
+                                <td>221</td>                                            
+                                <td>56%</td>
+                                <td>$14,492</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Cayucos Elementary</td>
+                                <td>205</td>                                            
+                                <td>35%</td>
+                                <td>$10,654</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Geyserville Unified</td>
+                                <td>185</td>                                            
+                                <td>70%</td>
+                                <td>$11,603</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Big Pine Unified</td>
+                                <td>173</td>                                            
+                                <td>78%</td>
+                                <td>$11,286</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Baker Valley Unified</td>
+                                <td>173</td>                                            
+                                <td>89%</td>
+                                <td>$22,557</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Cold Spring Elementary</td>
+                                <td>165</td>                                            
+                                <td>2%</td>
+                                <td>$18,439</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Sausalito Elementary</td>
+                                <td>155</td>                                            
+                                <td>89%</td>
+                                <td>$19,648</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Point Arena Joint Union High</td>
+                                <td>146</td>                                            
+                                <td>77%</td>
+                                <td>$20,769</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>General Shafter Elementary</td>
+                                <td>145</td>                                            
+                                <td>82%</td>
+                                <td>$12,171</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Bonny Doon Union Elementary</td>
+                                <td>142</td>                                            
+                                <td>17%</td>
+                                <td>$9,133</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Latrobe Elementary</td>
+                                <td>127</td>                                            
+                                <td>6%</td>
+                                <td>$10,440</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Alpine County Unified</td>
+                                <td>123</td>                                            
+                                <td>64%</td>
+                                <td>$10,573</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Midway Elementary</td>
+                                <td>118</td>                                            
+                                <td>46%</td>
+                                <td>$12,767</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Ballard Elementary</td>
+                                <td>117</td>                                            
+                                <td>3%</td>
+                                <td>$12,729</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Bolinas-Stinson Union Elementary</td>
+                                <td>116</td>                                            
+                                <td>39%</td>
+                                <td>$19,607</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Kenwood</td>
+                                <td>93</td>                                            
+                                <td>15%</td>
+                                <td>$18,598</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Howell Mountain Elementary</td>
+                                <td>92</td>                                            
+                                <td>51%</td>
+                                <td>$13,338</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Lakeside Joint Elementary</td>
+                                <td>88</td>                                            
+                                <td>22%</td>
+                                <td>$11,777</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Owens Valley Unified</td>
+                                <td>78</td>                                            
+                                <td>47%</td>
+                                <td>$18,589</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Forestville Union Elementary</td>
+                                <td>76</td>                                            
+                                <td>56%</td>
+                                <td>$12,228</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Round Valley Joint Elementary</td>
+                                <td>72</td>                                            
+                                <td>31%</td>
+                                <td>$11,504</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Pine Ridge Elementary</td>
+                                <td>71</td>                                            
+                                <td>27%</td>
+                                <td>$24,243</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Horicon Elementary</td>
+                                <td>57</td>                                            
+                                <td>98%</td>
+                                <td>$21,442</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Monte Rio Union Elementary</td>
+                                <td>55</td>                                            
+                                <td>67%</td>
+                                <td>$15,473</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Alexander Valley Union Elementary</td>
+                                <td>55</td>                                            
+                                <td>34%</td>
+                                <td>$23,147</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Manchester Union Elementary</td>
+                                <td>52</td>                                            
+                                <td>78%</td>
+                                <td>$9,302</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Vista del Mar Union Elementary</td>
+                                <td>50</td>                                            
+                                <td>32%</td>
+                                <td>$26,200</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Nicasio</td>
+                                <td>50</td>                                            
+                                <td>26%</td>
+                                <td>$11,970</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Big Creek Elementary</td>
+                                <td>48</td>                                            
+                                <td>39%</td>
+                                <td>$15,692</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Pope Valley Union Elementary</td>
+                                <td>48</td>                                            
+                                <td>77%</td>
+                                <td>$20,387</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Hornbrook Elementary</td>
+                                <td>42</td>                                            
+                                <td>90%</td>
+                                <td>$11,741</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Belridge Elementary</td>
+                                <td>39</td>                                            
+                                <td>90%</td>
+                                <td>$17,022</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Fort Ross Elementary</td>
+                                <td>31</td>                                            
+                                <td>55%</td>
+                                <td>$9,455</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Montgomery Elementary</td>
+                                <td>25</td>                                            
+                                <td>43%</td>
+                                <td>$16,076</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Desert Center Unified</td>
+                                <td>23</td>                                            
+                                <td>63%</td>
+                                <td>$47,642</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Mountain House Elementary</td>
+                                <td>21</td>                                            
+                                <td>61%</td>
+                                <td>$10,423</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>McKittrick Elementary</td>
+                                <td>16</td>                                            
+                                <td>14%</td>
+                                <td>$192,669</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Willow Grove Union Elementary</td>
+                                <td>16</td>                                            
+                                <td>23%</td>
+                                <td>$17,054</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Indian Springs Elementary</td>
+                                <td>14</td>                                            
+                                <td>100%</td>
+                                <td>$28,939</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Silver Fork Elementary</td>
+                                <td>12</td>                                            
+                                <td>70%</td>
+                                <td>$17,079</td>
+                            </tr>
+                            
+                        </table>
+                    </section>
+                </div>  
+            </section>  
+            <section id="slick-footer">
+	<script type="text/javascript">
+		//Get Date //
+		var date = new Date();date = date.getFullYear();
+		jQuery('#slick-footer').append('<p>©'+date+' EdSource. All Rights Reserved</p>');
+
+		// GA CODE //
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-3051201-4', 'edsource.org');
+	    ga('send', 'pageview');
+
+    </script>
+</section>    
+        </div>
+    </body>    
+    <script type="text/javascript">
+
+         /* SEARCH
+        ===========================*/
+        function searchTool(c){
+            var jQueryrows = jQuery(c + ' tr');
+            var allRows = jQuery(c + ' tr:not('+ c +' thead tr)');
+
+            /* SEARCH STRING
+            ======================================*/    
+            var val = jQuery.trim(jQuery('#pretty-table-search').val()).replace(/ +/g, ' ').toLowerCase();
+
+            if (val === ''){
+                jQuery(allRows).css('display','table-row');
+            }
+            else if (val !== '') {
+                 for (var i=0 ; i < allRows.length ; i++){
+                    allRows[i].style.display = "table-row";
+
+                    var testText = allRows[i].textContent;
+                    testText = testText.replace(/\s+/g, ' ').toLowerCase();
+                    if (testText.indexOf(val) == -1){
+                        allRows[i].style.display = "none";
+                    }
+                 }
+            }   
+        }
+
+        /* LOAD CHECK
+        ===========================*/
+        function onReady(callback) {
+            var intervalID = window.setInterval(checkReady, 1000);
+            function checkReady() {
+                if (document.getElementsByTagName('body')[0] !== undefined) {
+                    window.clearInterval(intervalID);
+                    callback.call(this);
+                }
+            }
+        }
+        onReady(function () {jQuery('#loading').remove();});
+
+
+        jQuery(document).ready(function(){
+
+            /* CONFIGURE TABLESORTER
+            ======================================*/ 
+            jQuery('#lcff-table').tablesorter({sortList: [[0,0]]});
+
+            /* SEARCH OPTIONS
+            ======================================*/ 
+            jQuery('#execute-search').on('click', function(){searchTool('#lcff-table');});
+            jQuery('#pretty-table-search').on('keypress', function(e){var key = e.which;if (key == 13){searchTool('#lcff-table');}})
+
+            jQuery('#reset-search').on('click', function(){
+                jQuery('tr').css('display','table-row');
+                jQuery('#pretty-table-search').val('');
+                jQuery('.pretty-table tbody tr').slice(10).hide();
+            })
+
+            /* ADD FIXED HEADER
+            ======================================*/
+            jQuery('.pretty-table').append('<div class="pretty-table-fixed"></div>');
+            jQuery('.pretty-table .pretty-table-fixed').detach().insertAfter('#pretty-table-search-options');
+
+            jQuery('.pretty-table .pretty-table-fixed').append('<div>District</div>');
+            jQuery('.pretty-table .pretty-table-fixed').append('<div>Average Daily Attendence</div>');
+            jQuery('.pretty-table .pretty-table-fixed').append('<div>High-Needs Students</div>');
+            jQuery('.pretty-table .pretty-table-fixed').append('<div>2014-15 Funding</div>');
+
+            /* FIXED HEADER WIDTH
+            ======================================*/
+            var fixedHedWidth = 100 / 4;
+            jQuery('.pretty-table .pretty-table-fixed div').css('width', fixedHedWidth + '%');
+
+            /* WORK THE FIXED HEADER
+            ======================================*/
+            var realHed = jQuery('.pretty-table thead').offset();
+            var lastRow = jQuery('.pretty-table tbody tr:last-of-type').offset();
+
+            jQuery(document).on('scroll', function(){
+                var curPos = jQuery(this).scrollTop();
+
+                var tableWidth = jQuery('#lcff-table').width();
+                jQuery('.pretty-table .pretty-table-fixed').css('width', tableWidth + 'px');
+
+                if (curPos > realHed.top + 60 && curPos < lastRow.top) {
+                    jQuery('.pretty-table .pretty-table-fixed').show();
+                    jQuery('#pretty-table-top').show();
+                }
+                else {
+                    jQuery('.pretty-table .pretty-table-fixed').hide();
+                    jQuery('#pretty-table-top').hide();        
+                }
+            });
+        })
+
+        window.onload = function(){
+
+             /* CONFIGURE BACK TO THE TOP
+            ======================================*/ 
+            window.setTimeout(function() {
+                jQuery('#pretty-table-top').on('click', function(){
+                    window.scrollTo(0,0);
+                })
+            }, 0);
+
+            
+        }
+
+    </script>
+</html>

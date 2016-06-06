@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"><title>{{object.target}} School Finance | EdSource</title></meta>
+        {% include 'header.html' %}
+        <link rel="stylesheet" type="text/css" href="http://edsource.org/local-control-funding-formula-database/static/bar.css">
+        <script type="text/javascript" src="http://edsource.org/local-control-funding-formula-database/static/lcff-compare-search.js"></script>
+        <script type="text/javascript" src="http://edsource.org/local-control-funding-formula-database/static/dual-bar-jinja.js"></script>
+    </head>
+    <body>
+        <div id="slick-contain">
+            {% include 'nav.html' %}
+            <section id="slick-body">
+               <div role="header" class="seventy">
+                    <h2>{{object.target}}</h2>
+                    <p>{{object.county_name}} County</p>
+                    {% include 'social.html' %}
+               </div>
+               <div class="temp-charts" id="chart1"></div>
+               <div role="facts" class="twenty-five">
+                    <h3>Key Facts</h3>
+                    <h4>Avg Daily Attendance</h4>
+                    <p>{{('{0:,}'.format(object.ada | int))}}</p>
+                    <h4>High-Needs Students</h4>
+                    <p>{{'{:.0f}'.format(object.high_needs|float*100)}}%</p>
+                    <h4>2014-15 Funding</h4>
+                    <p>${{('{0:,}'.format(object.y201415 | int))}}/student</p>
+                    <h4>2015-16 Estimate</h4>
+                    <p>${{('{0:,}'.format(object.y201516 | int))}}/student</p>
+                    <h4>2020-21 Target</h4>
+                    <p>${{('{0:,}'.format(object.y202021 | int))}}/student
+                    {% if object.floor_targ_caveat == 'TRUE'%}<br \><em>This is one of the 42 non-basic aid districts or charter schools in our database that received the most per student revenue under the finance system that preceded the Local Control Funding Formula. They continue to receive what they got in 2012-13, the last year under the old “revenue limits” formula. Their 2016-17 and full-funding projections reflect their 2012-13 levels without annual cost-of-living adjustments.</em>  
+                    {% endif%}</p>
+               </div>
+                <div role="search" class="twenty-five">
+                    <div>
+                        <h3>Search Districts and Charters</h3>
+                        <p>Basic Aid districts can be found by clicking on "Basic Aid" in the navigation bar at the top.</p>
+                        <input class="search-bar" link="yes" role="0" type="text" style="height:24px;" placeholder="Type Districts, Charters, or County Name Here">
+                    </div>
+                </div>
+                <div class="lcff-results twenty-five" role="results" type="0"></div>
+               <div role="links" class="twenty-five">
+                    <h3>Related Districts and Charters</h3>
+                    {% for d in all %}
+                        {% if d.district_code == object.district_code %}
+                            {% if d.target != object.target %}
+                                <a href="{{d.slug}}.html"><p>{{d.target}}</p></a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+               </div>
+            </section>
+
+            {% include 'footer.html' %}
+        </div>
+    </body>    
+    <script type="text/javascript">
+        var caliAvg = {
+            target:'Average',
+            y201415:7813,
+            y201516:8792,
+            y202021:10700
+        }
+
+        jQuery(document).ready(function(){
+            var related = jQuery('div[role="links"] a').size();
+            if (related < 1){jQuery('div[role="links"]').append('<p>No related districts or charter schools found.</p>')}
+
+        })
+
+
+        barChart.getAttr(null, {{data|safe}}, caliAvg, 'chart1', 360, 300, [50,40,30,50],'#198c96','#8DCBC6',false, null, null, '$,', 5, .1, null, 'Funding per Student', null, null, 3, 5);
+    </script>
+</html>
