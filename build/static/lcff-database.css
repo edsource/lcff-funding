@@ -1,3 +1,14 @@
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+
 /* HEADER STYLE 
 ===========================================*/
 #slick-header>div:nth-of-type(2) h2 {font-size: 75%;}
@@ -5,7 +16,7 @@
 #slick-header>div:nth-of-type(2) a:hover, #slick-header .slick-nav-hed a:hover {color:#edf8fb;}
 
 #slick-header .slick-nav-hed {margin-top:-3px;}
-#slick-header .slick-nav-hed a {margin:0 20px;}
+#slick-header .slick-nav-hed a {margin:0 10px;}
 #slick-header .slick-social-hed {top:-3px;}
 
 #lcff-header {width:100%;margin-top:5em;}
